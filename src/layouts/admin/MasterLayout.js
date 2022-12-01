@@ -12,7 +12,7 @@ import Sidebar from './Sidebar'
 
 import routes from '../../routes/routes';
 
-const MasterLayout = () => {
+const MasterLayout = (props) => {
   return (
     <div className='sb-nav-fixed'>
         <Navbar/>
@@ -22,7 +22,7 @@ const MasterLayout = () => {
              </div>
              <div id="layoutSidenav_content">
                 <main>
-                    <Routes>
+                    {/* <Routes>
                     {
                         routes.map((route,index)=>{
                             return(
@@ -41,7 +41,8 @@ const MasterLayout = () => {
                         })
                     }       
                     <Navigate  from="admin" to ="/admin/dashboard" />                        
-                    </Routes>
+                    </Routes> */}
+                    {props.element}
                 </main>
                 <Footer/>
              </div>

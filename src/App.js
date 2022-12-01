@@ -2,6 +2,7 @@
 import { Route, BrowserRouter as Router, Switch, Routes   } from 'react-router-dom';
 import Dashboard from './components/admin/Dashboard';
 import Profile from './components/admin/Profile';
+import Home from './components/frontend/Home';
 import MasterLayout from './layouts/admin/MasterLayout';
 
 function App() {
@@ -10,12 +11,15 @@ function App() {
     <Router>
 
     <Routes>
-          <Route   index  path="/admin" name="Admin" render={(props)=><MasterLayout {...props}/>}  />
-{/*           
-          <Route exact path="/admin/dashboard"  element={<Dashboard/>}/>
+          {/* <Route   path="/admin" name="Admin" render={(props)=><MasterLayout {...props}/>}  /> */}
+{/* {/*            */}
+          {/* <Route exact path="/admin/dashboard"  element={<Dashboard/>}/>
 
-          <Route exact path="/admin/profile"  element={<Profile/>}/> */}
-  
+          <Route exact path="/admin/profile"  element={<Profile/>}/>  */}
+        <Route path="/" element={<Home />} /> 
+        <Route path="/admin" element={<MasterLayout />} /> 
+        <Route path='/admin/dashboard' element={<MasterLayout element={<Dashboard/>}/>}/>
+        <Route path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
       </Routes>
     </Router>
     </div>
