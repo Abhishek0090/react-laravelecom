@@ -23,7 +23,7 @@ const Register = () => {
             password : registerInput.password
         }
 
-        axios.post('/api/register',data).then((response)=>{
+        axios.post('http://localhost:8000/api/register',data).then((response)=>{
               
         })
     }
