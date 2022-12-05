@@ -15,7 +15,7 @@ class AuthController extends Controller
     //
     public function register(Request $request){
             $validator = Validator::make($request->all(),[
-                'name'=>'bail|required',
+                'name'=>'required',
                 'email'=>'required|email|max:191|unique:users,email',
                 'password'=>'required|min:8'
             ]);      
@@ -78,18 +78,30 @@ class AuthController extends Controller
 
     public function logout(Request $request){
         
-        $accessToken = $request->bearerToken();
+        // print_r($request);die;
+        // $accessToken = $request->bearerToken();
         
-        $token = PersonalAccessToken::findToken($accessToken);
+        // $token = PersonalAccessToken::findToken($accessToken); 
 
+        // $token->delete();
 
-        $token->delete();
+        // $user = new User();
+
+        // // $user->tokens()->delete();
+        // $user->tokens()->where('id', $tokenId)->delete();
+
+        // // $request->user()->currentAccessToken()->delete();
 
         // $request->user()->currentAccessToken()->delete();
-        // auth()->user()->tokens()->delete();
-        return response().json([
-            'status' => 200,
-            'message' => 'Logged out Successfully'
-        ]);
+//  
+ 
+        auth()->user()->tokens()->delete(); 
+            return response()->json([
+                'status' => 200,
+                'message' => 'Logged out Successfully'
+            ]);
+  
+            
+    
     }
 } 

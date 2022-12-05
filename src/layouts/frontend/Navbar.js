@@ -13,8 +13,8 @@ const Navbar = () => {
 
     axios.post('/api/logout').then((res)=>{
       if(res.data.status===200){
-        localStorage.removeItem('auth-token',res.data.token);         
-        localStorage.removeItem('auth-name',res.data.username);         
+        localStorage.removeItem('auth_token');         
+        localStorage.removeItem('auth_name');         
         swal("Success",res.data.message,"success");
         Navigate('/');
       }else{
@@ -26,7 +26,7 @@ const Navbar = () => {
   }
   
   var AuthButtons = '';
-    if(!localStorage.getItem('auth-token')){
+    if(!localStorage.getItem('auth_token')){
       AuthButtons = (
       <ul className="navbar-nav">
          <li className="nav-item">
