@@ -7,6 +7,9 @@ import Register from './components/frontend/auth/Register';
 import Home from './components/frontend/Home';
 import MasterLayout from './layouts/admin/MasterLayout';
 import axios from 'axios';
+import AdminPrivateRoute from './routes/AdminPrivateRoute';
+import { useEffect } from 'react';
+import { useState } from 'react';
 
 axios.defaults.withCredentials = true;
 
@@ -23,6 +26,20 @@ axios.interceptors.request.use(function (config) {
 axios.defaults.baseURL = "http://localhost:8000/"
 
 function App() {
+
+  const [Authenticated, setAuthenticated] = useState(false)
+
+  useEffect(() => {
+
+      axios.get('/api/checkingAuthenticated').then(res=>{
+          if(res.status===200){
+              setAuthenticated(true);
+          }
+      }) 
+    return () => {
+      setAuthenticated(false);
+    }
+  }, [])
 
   // const Navigate = useNavigate();
   return (
@@ -41,11 +58,17 @@ function App() {
       <Route path="/register" element= {localStorage.getItem('auth_token')?<Navigate to="/" />:<Register/>} />
          
     
-        {/* <Route path="/admin" element={<MasterLayout />} />  */}
+        <Route path="/admin" element={<MasterLayout />} /> 
         <Route path='/admin/dashboard' element={<MasterLayout element={<Dashboard/>}/>}/>
         <Route path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
 
-        <AdminPrivateRoute path="/admin"  name="admin"  />
+      
+        <Route path="/admin" element={  Authenticated ?
+                ( <MasterLayout   /> ) :
+                ( <Navigate to="/login" />)
+        }
+                />
+        
       </Routes>
     </Router>
     </div>

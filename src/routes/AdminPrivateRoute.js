@@ -1,7 +1,7 @@
 import { cleanup } from '@testing-library/react'
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Route, Navigate } from 'react-router-dom'
+import { Route, Navigate , Redirect } from 'react-router-dom'
 import MasterLayout from '../layouts/admin/MasterLayout'
 
 const AdminPrivateRoute = ({...rest}) => {
@@ -24,13 +24,12 @@ const AdminPrivateRoute = ({...rest}) => {
   return (
         
             <Route {...rest}
-             render={({props,location})=>
+            render={ ({props, location}) => 
                 Authenticated ?
-                ( <MasterLayout   {...props} /> ):
-                 ( <Navigate to={{pathname:"/login" , state : {from : location} }}/> ) 
-               }    
-               
-            />
+                ( <MasterLayout {...props} /> ) :
+                ( <Navigate to={{pathname: "/login", state: {from: location} }} /> ) 
+            }
+/>
    
         
   );
