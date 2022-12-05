@@ -7,6 +7,7 @@ import Register from './components/frontend/auth/Register';
 import Home from './components/frontend/Home';
 import MasterLayout from './layouts/admin/MasterLayout';
 import axios from 'axios';
+import AdminPrivateRoute from './routes/AdminPrivateRoute';
 
 axios.defaults.withCredentials = true;
 
@@ -32,8 +33,7 @@ function App() {
     <Routes>
        
         <Route path="/" element={<Home />} /> 
-        {/* <Route path="/login" element={<Login/>} /> 
-        <Route path="/register" element={<Register/>} />  */}
+        
 
       <Route path="/login" element=  {localStorage.getItem('auth_token')?<Navigate to="/" />:<Login/>} />
         
@@ -41,9 +41,11 @@ function App() {
       <Route path="/register" element= {localStorage.getItem('auth_token')?<Navigate to="/" />:<Register/>} />
          
     
-        <Route path="/admin" element={<MasterLayout />} /> 
+        {/* <Route path="/admin" element={<MasterLayout />} />  */}
         <Route path='/admin/dashboard' element={<MasterLayout element={<Dashboard/>}/>}/>
         <Route path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
+
+        <AdminPrivateRoute path="/admin"  name="admin"  />
       </Routes>
     </Router>
     </div>

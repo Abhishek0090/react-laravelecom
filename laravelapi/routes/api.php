@@ -15,6 +15,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->group(function(){
 
+    Route::get('/checkingAuthenticated', function () {
+         return response()->json(['message'=>'You are']);
+    });
+
     Route::post('logout',[AuthController::class,'logout']);
 });
 
