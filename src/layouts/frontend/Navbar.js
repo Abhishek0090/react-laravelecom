@@ -17,9 +17,7 @@ const Navbar = () => {
         localStorage.removeItem('auth_name');         
         swal("Success",res.data.message,"success");
         Navigate('/');
-      }else{
-
-      }
+      } 
 
     })
 

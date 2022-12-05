@@ -1,20 +1,37 @@
-import React from 'react'
+import { cleanup } from '@testing-library/react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { Route, Navigate } from 'react-router-dom'
 import MasterLayout from '../layouts/admin/MasterLayout'
 
 const AdminPrivateRoute = ({...rest}) => {
-  return (
-        <>
 
+    const [Authenticated, setAuthenticated] = useState(false)
+
+    useEffect(() => {
+
+        axios.get('/api/checkingAuthenticated').then(res=>{
+            if(res.status===200){
+                setAuthenticated(true);
+            }
+        }) 
+      return () => {
+        setAuthenticated(false);
+      }
+    }, [])
+    
+    
+  return (
+        
             <Route {...rest}
              render={({props,location})=>
-                  localStorage.getItem('auth_token')?
-                  ( <MasterLayout {...props} /> ):
-                  ( <Navigate to={{pathname:"/login" , state : {from : location} }}/> ) 
-            }    
+                Authenticated ?
+                ( <MasterLayout   {...props} /> ):
+                 ( <Navigate to={{pathname:"/login" , state : {from : location} }}/> ) 
+               }    
                
             />
-        </>
+   
         
   );
 }
