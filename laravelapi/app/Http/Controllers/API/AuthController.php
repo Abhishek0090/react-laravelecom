@@ -63,7 +63,13 @@ class AuthController extends Controller
                 ]); 
             }else{
                 
-                $token = $user->createToken($user->email.'_TOKEN')->plainTextToken;
+                if($user->role == 1){
+                    $token = $user->createToken($user->email.'_AdminToken',['server:admin'])->plainTextToken;
+                    
+                }else{
+
+                    $token = $user->createToken($user->email.'_TOKEN',[''])->plainTextToken;
+                }
 
                 return response()->json([
                     'status'=>200,
