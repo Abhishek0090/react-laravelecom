@@ -32,7 +32,14 @@ const Login = () => {
                 localStorage.setItem('auth_token',res.data.token);         
                 localStorage.setItem('auth_name',res.data.username);         
                 swal("Success",res.data.message,"success");
-                Navigate('/');
+
+                if(res.data.role==='admin'){
+
+                    Navigate('/admin/dashboard');
+                }else{
+                    Navigate('/');
+
+                }
 
             }else if(res.data.status===401){
                 swal("warning",res.data.message,"warning");     
