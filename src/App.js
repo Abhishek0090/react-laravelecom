@@ -7,8 +7,6 @@ import Register from './components/frontend/auth/Register';
 import Home from './components/frontend/Home';
 import MasterLayout from './layouts/admin/MasterLayout';
 import axios from 'axios';
-import AdminPrivateRoute from './routes/AdminPrivateRoute';
-import { useEffect, useState } from 'react';
 
 axios.defaults.withCredentials = true;
 
@@ -26,19 +24,6 @@ axios.defaults.baseURL = "http://localhost:8000/"
 
 function App() {
 
-     const [Authenticated, setAuthenticated] = useState(false)
-
-      useEffect(() => {
-
-          axios.get('/api/checkingAuthenticated').then(res=>{
-              if(res.status===200){
-                  setAuthenticated(true);
-              }else{
-                setAuthenticated(false);
-              }
-          })  
-           
-      }, [])
   // const Navigate = useNavigate();
   return (
     <div className="App">
@@ -47,7 +32,8 @@ function App() {
     <Routes>
        
         <Route path="/" element={<Home />} /> 
-        
+        {/* <Route path="/login" element={<Login/>} /> 
+        <Route path="/register" element={<Register/>} />  */}
 
       <Route path="/login" element=  {localStorage.getItem('auth_token')?<Navigate to="/" />:<Login/>} />
         
@@ -59,9 +45,7 @@ function App() {
         <Route path='/admin/dashboard' element={<MasterLayout element={<Dashboard/>}/>}/>
         <Route path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
 
-        <Route path="/admin"   render={Authenticated ?
-                ( <MasterLayout   /> ):
-                 ( <Navigate to="/login"  replace={true}/> ) }  />
+        <AdminPrivateRoute path="/admin"  name="admin"  />
       </Routes>
     </Router>
     </div>
