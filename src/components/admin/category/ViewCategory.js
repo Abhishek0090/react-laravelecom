@@ -10,7 +10,7 @@ const ViewCategory = () => {
 
     useEffect(() => {
         axios.get('/api/view-category').then((res)=>{
-            if(res.data.status === 200){
+            if(res.status === 200){
 
                     setCategorylist(res.data.category)
                 // swal("Success",res.data.message,"success");

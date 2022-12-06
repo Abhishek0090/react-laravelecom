@@ -41,7 +41,7 @@ class CategoryController extends Controller
         ]);
     }
 
-    public function view(){
+    public function index(){
 
         $category = Category::all();
 
