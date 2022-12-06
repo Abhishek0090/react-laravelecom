@@ -13,6 +13,7 @@ import { useState } from 'react';
 import swal from 'sweetalert';
 import Page403 from './components/errors/Page403';
 import Page404 from './components/errors/Page404';
+import Category from './components/admin/Category';
 
 axios.defaults.withCredentials = true;
 
@@ -102,8 +103,9 @@ function App() {
       <Route path='/admin/dashboard' element={<MasterLayout element={<Dashboard/>}/>}/>
      <Route path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
 
-      
-        <Route path="/admin" element={  Authenticated ?
+     <Route path='/admin/add-category' element={<MasterLayout element={<Category/>} />}/>  
+ 
+      <Route path="/admin" element={  Authenticated ?
                 ( <MasterLayout   /> ) :
                 ( <Navigate to="/login" />) }
                 />
