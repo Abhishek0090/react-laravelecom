@@ -22,7 +22,11 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
 
     //Adding category
     Route::post('store-category',[CategoryController::class,'store']);
- 
+
+
+    //viewing category
+ //Adding category
+ Route::post('view-category',[CategoryController::class,'view']);
 });
 
 Route::middleware(['auth:sanctum' ])->group(function(){ 
