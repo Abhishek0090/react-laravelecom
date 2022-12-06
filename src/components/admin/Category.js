@@ -38,8 +38,8 @@ const Category = () => {
 
             if(res.data.status === 200){
 
-                
-            }else{
+
+            }else if(res.data.status === 400){
 
 
             }
