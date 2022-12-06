@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import swal from 'sweetalert';
 
 const Category = () => {
 
@@ -10,7 +11,8 @@ const Category = () => {
         status : '',
         meta_title : '',
         meta_name : '',
-        meta_description : ''
+        meta_description : '',
+        error_list : []
     })
 
     const handleInput = (e)=>{
@@ -22,8 +24,8 @@ const Category = () => {
 
 
     const submitCategory = (e)=>{
-        e.persist();
-
+        e.preventDefault();
+ 
         const data = {
             slug: categoryInput.slug,
             name: categoryInput.name,
@@ -38,13 +40,24 @@ const Category = () => {
 
             if(res.data.status === 200){
 
-
+                e.target.reset();
+                swal("Success",res.data.message,"success");
+                // document.getElementById('CATEGORY_FORM').reset();
             }else if(res.data.status === 400){
 
-
+                    setCategory({...categoryInput,error_list:res.data.errors});
             }
 
         })
+    }
+
+    var display_errors = [];
+    if(categoryInput.error_list){
+        display_errors = [
+            categoryInput.error_list.slug,
+            categoryInput.error_list.name,
+            categoryInput.error_list.meta_title
+        ]
     }
     
   return (
@@ -52,7 +65,13 @@ const Category = () => {
             <h2 className='mt-4'> 
                  Add Category
             </h2>
-            <form onSubmit={submitCategory}>
+
+            {
+                display_errors.map((item)=>{
+                    return(<p className='mb-1' key={item}>{item}</p>)
+                })
+            }
+            <form onSubmit={submitCategory} id="CATEGORY_FORM">
 
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
                     <li className="nav-item" role="presentation">
@@ -66,7 +85,7 @@ const Category = () => {
             <div className="tab-pane card-body border fade show active p-3" id="home" role="tabpanel" aria-labelledby="home-tab" >
                 <div className='form-group mb-3  '>
                     <label>Slug</label>
-                    <input type="text" name="slug" onChange={handleInput} value={categoryInput.slug} className="form-control"/>
+                    <input type="text" name="slug" onChange={handleInput} value={categoryInput.slug} className="form-control"/> 
                 </div>
                 <div className='form-group mb-3 '>
                     <label>Name</label>
@@ -90,7 +109,7 @@ const Category = () => {
                 </div>
                 <div className='form-group mb-3'>
                     <label>Meta Keywords</label>
-                    <input type="text" name="meta_keyword" className='form-control'    onChange={handleInput} value={categoryInput.meta_name} /> 
+                    <input type="text" name="meta_keyword" className='form-control'    onChange={handleInput} value={categoryInput.meta_keyword} /> 
                 </div>
                 <div className='form-group mb-3'>
                     <label>Meta Description</label>
@@ -98,8 +117,8 @@ const Category = () => {
                 </div>
             </div>
            
+            <button type="submit" className="btn btn-primary px-4 float-end">Submit</button>
             </div>
-            <div type="submit" className='btn btn-primary px-4 float-end'>Submit</div>
             </form>
     </div>
   )
