@@ -45,7 +45,7 @@ function App() {
       }) 
     return () => {
       setAuthenticated(false);
-       
+      setLoading(true);
     }
   }, [])
 
@@ -60,14 +60,14 @@ function App() {
 
   //for checking admin or user validation
   axios.interceptors.response.use(function (response){
-    return response;
-  },function (error){
-    if(error.response.status === 403){ //accesss Denied
-      swal("Forbidden",error.response.data.message,"warning");
-      Navigate('/403');
-    }else  if(error.response.status === 404){ //Page Not Found
-      swal("404 Not Found","Url not found","warning");
-      Navigate('/404');
+      return response;
+    },function (error){
+      if(error.response.status === 403){ //accesss Denied
+        swal("Forbidden",error.response.data.message,"warning");
+        Navigate('/403');
+      }else  if(error.response.status === 404){ //Page Not Found
+        swal("404 Not Found","Url not found","warning");
+        Navigate('/404');
     }
     return Promise.reject(error);
   }

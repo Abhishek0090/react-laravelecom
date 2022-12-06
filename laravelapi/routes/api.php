@@ -21,10 +21,8 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
  
 });
 
-Route::middleware(['auth:sanctum' ])->group(function(){
-
- 
-
+Route::middleware(['auth:sanctum' ])->group(function(){ 
+    
     Route::post('logout',[AuthController::class,'logout']);
 });
 

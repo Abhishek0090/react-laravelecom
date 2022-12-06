@@ -19,7 +19,7 @@ class ApiAdminMiddleware
     {
         if(Auth::check()){
 
-            if(auth()->user()->tokenCan('server:admin')){
+           if(auth()->user()->tokenCan('server:admin')){
                 return $next($request);
         }else{
             return  response()->json([
