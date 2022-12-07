@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import swal from 'sweetalert';
 
-const Category = () => {
+const EditCategory = () => {
 
     const [categoryInput, setCategory] = useState({
         slug : '',
@@ -124,4 +124,4 @@ const Category = () => {
   )
 }
 
-export default Category
+export default EditCategory

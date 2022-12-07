@@ -47,7 +47,7 @@ const Login = () => {
             }else{
                 setLogin({...loginInput,error_list:res.data.validation_errors})
             }
-        })
+        });
     });
     }
 

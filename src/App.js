@@ -15,6 +15,7 @@ import Page403 from './components/errors/Page403';
 import Page404 from './components/errors/Page404';
 import Category from './components/admin/category/Category';
 import ViewCategory from './components/admin/category/ViewCategory';
+import EditCategory from './components/admin/category/EditCategory';
 
 axios.defaults.withCredentials = true;
 
@@ -40,21 +41,23 @@ function App() {
   useEffect(() => {
 
       axios.get('/api/checkingAuthenticated').then(res=>{
-          if(res.status===200){
+          if(res.status === 200){
               setAuthenticated(true);
           }
           setLoading(false);
       }) 
     return () => {
-      setAuthenticated(false);
+      setAuthenticated(false); 
       setLoading(true);
     }
-  }, [])
+  }, []);
 
 //message:unautheticated handler
   axios.interceptors.response.use(undefined,function axiosRetryInterceptor(err){
     if(err.response.status === 401){
-      swal('UnAuthorized',err.response.data.message,"Warning");
+       
+      // setLoading(true);
+      swal('hi bro',err.response.data.message,"Warning");
       Navigate('/');
     }
     return Promise.reject(err);
@@ -64,7 +67,7 @@ function App() {
   axios.interceptors.response.use(function (response){
       return response;
     },function (error){
-      if(error.response.status === 403){ //accesss Denied
+       if(error.response.status === 403){ //accesss Denied
         swal("Forbidden",error.response.data.message,"warning");
         Navigate('/403');
       }else  if(error.response.status === 404){ //Page Not Found
@@ -106,6 +109,7 @@ function App() {
 
      <Route path='/admin/add-category' element={<MasterLayout element={<Category/>} />}/>  
      <Route path='/admin/view-category' element={<MasterLayout element={<ViewCategory/>} />}/>  
+     <Route path='/admin/edit-category/:id' element={<MasterLayout element={<EditCategory/>} />}/>  
  
       <Route path="/admin" element={  Authenticated ?
                 ( <MasterLayout   /> ) :
