@@ -32,6 +32,9 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
 
     //update category
     Route::put('update-category/{id}',[CategoryController::class,'update']);
+
+    //delete category
+    Route::delete('delete-category/{id}',[CategoryController::class,'destroy']);
 });
 
 Route::middleware(['auth:sanctum' ])->group(function(){ 
