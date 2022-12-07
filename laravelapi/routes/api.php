@@ -23,10 +23,15 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
     //Adding category
     Route::post('store-category',[CategoryController::class,'store']);
 
-
-    //viewing category
- //Adding category
+ 
+    //viewing category 
  Route::get('view-category',[CategoryController::class,'index']);
+
+    //edit category
+    Route::get('edit-category/{id}',[CategoryController::class,'edit']);
+
+    //update category
+    Route::put('update-category/{id}',[CategoryController::class,'update']);
 });
 
 Route::middleware(['auth:sanctum' ])->group(function(){ 

@@ -34,7 +34,7 @@ const ViewCategory = () => {
                     <td>{item.name}</td>
                     <td>{item.slug}</td>
                     <td>{item.status}</td>
-                    <td><Link to={`edit-category/${item.id}`} className="btn btn-primary btn-sm">Edit</Link></td>
+                    <td><Link to={`/admin/edit-category/${item.id}`} className="btn btn-primary btn-sm">Edit</Link></td>
                     <td><button type="button" className="btn btn-danger btn-sm">Delete</button></td> 
                 </tr>
             )

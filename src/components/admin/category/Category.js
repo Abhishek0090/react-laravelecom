@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom';
 import swal from 'sweetalert';
 
 const Category = () => {
@@ -62,15 +63,19 @@ const Category = () => {
     
   return (
     <div className='container-fluid px-4'>
-            <h2 className='mt-4'> 
-                 Add Category
-            </h2>
-
             {
                 display_errors.map((item)=>{
                     return(<p className='mb-1' key={item}>{item}</p>)
                 })
             }
+           <div className="card-header">
+                    <h4>Add Category 
+                        <Link to="/admin/view-category" className="btn btn-primary btn-sm float-end">View Category</Link>
+                    </h4>
+                </div>
+
+            <div className="card-body">
+
             <form onSubmit={submitCategory} id="CATEGORY_FORM">
 
                 <ul className="nav nav-tabs" id="myTab" role="tablist">
@@ -120,6 +125,7 @@ const Category = () => {
             <button type="submit" className="btn btn-primary px-4 float-end">Submit</button>
             </div>
             </form>
+    </div>
     </div>
   )
 }

@@ -108,7 +108,9 @@ function App() {
      <Route path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
 
      <Route path='/admin/add-category' element={<MasterLayout element={<Category/>} />}/>  
-     <Route path='/admin/view-category' element={<MasterLayout element={<ViewCategory/>} />}/>  
+     
+     <Route path='/admin/view-category' element={<MasterLayout element={<ViewCategory/>} />}/>
+
      <Route path='/admin/edit-category/:id' element={<MasterLayout element={<EditCategory/>} />}/>  
  
       <Route path="/admin" element={  Authenticated ?
