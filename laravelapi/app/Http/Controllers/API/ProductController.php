@@ -46,7 +46,8 @@ class ProductController extends Controller
         $product->original_price = $request->input('original_price');
         $product->qty = $request->input('qty');
             //for image file
-            if($request->hasFile('image')){
+            if($request->hasFile('image'))
+            {
                 $file = $request->file('image');
                 $extension = $file->getClientOriginalExtension();
                 $filename = time() .'.'.$extension;
@@ -58,12 +59,13 @@ class ProductController extends Controller
         $product->popular = $request->input('popular')==true ?'1':'0';
         $product->status = $request->input('status')==true ?'1':'0';
         $product->save();
+        
         return response()->json([
             'status'=>200,
             'message'=>'Product Added Successfully'
         ]);
-    }
-    }
+            }
+        }
     
 
 }
