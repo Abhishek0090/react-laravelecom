@@ -16,20 +16,24 @@ import Page404 from './components/errors/Page404';
 import Category from './components/admin/category/Category';
 import ViewCategory from './components/admin/category/ViewCategory';
 import EditCategory from './components/admin/category/EditCategory';
+import Product from './components/admin/product/Product';
+import ViewProduct from './components/admin/product/ViewProduct';
+import EditProduct from './components/admin/product/EditProduct';
 
-axios.defaults.withCredentials = true;
 
+axios.defaults.baseURL = "http://localhost:8000/"
 axios.defaults.headers.post['Content-Type'] = 'application/json'
 axios.defaults.headers.post['Accept'] = 'application/json'
 
-axios.interceptors.request.use(function (config) {
-    const token = localStorage.getItem('auth_token');
-    config.headers.Authorization = token ? `Bearer ${token}` : ``;
-    return config;
-    }
-)
+axios.defaults.withCredentials = true;
 
-axios.defaults.baseURL = "http://localhost:8000/"
+axios.interceptors.request.use(function (config){
+  const token = localStorage.getItem('auth_token');
+  config.headers.Authorization = token ? `Bearer ${token}` : '';
+  return config;
+});
+
+
 
 function App() {
 
@@ -55,7 +59,7 @@ function App() {
 //message:unautheticated handler
   axios.interceptors.response.use(undefined,function axiosRetryInterceptor(err){
     if(err.response.status === 401){
-       
+       console.log(err.response.data.message);
       // setLoading(true);
       swal('hi bro',err.response.data.message,"Warning");
       Navigate('/');
@@ -90,30 +94,36 @@ function App() {
 
     <Routes>
        
-        <Route path="/" element={<Home />} /> 
+        <Route exact path="/" element={<Home />} /> 
         {/* <Route path="/login" element={<Login/>} /> 
         <Route path="/register" element={<Register/>} />  */}
 
-        <Route path="/403" element={<Page403/>}/>
-        <Route path="/403" element={<Page404/>}/>
+        <Route exact  path="/403" element={<Page403/>}/>
+        <Route exact  path="/403" element={<Page404/>}/>
 
-      <Route path="/login" element=  {localStorage.getItem('auth_token')?<Navigate to="/" />:<Login/>} />
+      <Route  exact path="/login" element=  {localStorage.getItem('auth_token')?<Navigate to="/" />:<Login/>} />
         
      
-      <Route path="/register" element= {localStorage.getItem('auth_token')?<Navigate to="/" />:<Register/>} />
+      <Route  exact path="/register" element= {localStorage.getItem('auth_token')?<Navigate to="/" />:<Register/>} />
          
     
       <Route path="/admin" element={<MasterLayout />} /> 
       <Route path='/admin/dashboard' element={<MasterLayout element={<Dashboard/>}/>}/>
-     <Route path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
+     <Route  exact path='/admin/profile' element={<MasterLayout element={<Profile/>} />}/>  
 
-     <Route path='/admin/add-category' element={<MasterLayout element={<Category/>} />}/>  
+     <Route  exact path='/admin/add-category' element={<MasterLayout element={<Category/>} />}/>  
      
-     <Route path='/admin/view-category' element={<MasterLayout element={<ViewCategory/>} />}/>
+     <Route  exact path='/admin/view-category' element={<MasterLayout element={<ViewCategory/>} />}/>
 
-     <Route path='/admin/edit-category/:id' element={<MasterLayout element={<EditCategory/>} />}/>  
+     <Route  exact path='/admin/edit-category/:id' element={<MasterLayout element={<EditCategory/>} />}/>  
+
+     <Route  exact path='/admin/add-product' element={<MasterLayout element={<Product/>} />}/>  
+     
+     <Route  exact path='/admin/view-product' element={<MasterLayout element={<ViewProduct/>} />}/>
+
+     <Route  exact path='/admin/edit-product/:id' element={<MasterLayout element={<EditProduct/>} />}/>  
  
-      <Route path="/admin" element={  Authenticated ?
+      <Route  exact path="/admin" element={  Authenticated ?
                 ( <MasterLayout   /> ) :
                 ( <Navigate to="/login" />) }
                 />

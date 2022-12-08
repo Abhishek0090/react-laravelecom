@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
 
  
     //viewing category 
- Route::get('view-category',[CategoryController::class,'index']);
+    Route::get('view-category',[CategoryController::class,'index']);
 
     //edit category
     Route::get('edit-category/{id}',[CategoryController::class,'edit']);
@@ -35,6 +35,9 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
 
     //delete category
     Route::delete('delete-category/{id}',[CategoryController::class,'destroy']);
+
+    //delete category
+    Route::get('all-category',[CategoryController::class,'allcategory']);
 });
 
 Route::middleware(['auth:sanctum' ])->group(function(){ 
