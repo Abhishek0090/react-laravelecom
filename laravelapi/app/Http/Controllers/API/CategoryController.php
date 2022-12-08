@@ -23,9 +23,7 @@ class CategoryController extends Controller
                 'errors'=> $validator->messages()
             ]);
         }else{
-
-        }
-
+ 
         $category = new Category();        
         $category->meta_title = $request->input('meta_title');
         $category->meta_keyword = $request->input('meta_keyword');
@@ -39,6 +37,7 @@ class CategoryController extends Controller
             'status'=>200,
             'message'=>'Category Added Successfully'
         ]);
+    }
     }
 
     public function index(){
