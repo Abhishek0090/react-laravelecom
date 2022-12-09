@@ -15,7 +15,7 @@ function Product()
         meta_title: '',
         meta_keyword: '',
         meta_description: '',
-
+        image: '',
         selling_price: '',
         original_price: '',
         qty: '',
@@ -24,7 +24,7 @@ function Product()
         popular: '',
         status: '',
     });
-    const [image, setImage] = useState([]);
+    const [image, setImage] = useState('');
     const [errorlist, setError] = useState([]);
     
     const handleInput = (e) => {
@@ -33,9 +33,9 @@ function Product()
     }
 
     const handleImage = (e) => {
-    
+
         setImage(e.target.files[0]);
-        console.log(image[0])
+        console.log(image);
     }
 
     useEffect( () => {
@@ -58,7 +58,7 @@ function Product()
         e.preventDefault();
         
         const formData = new FormData();
-        formData.append('image', image.image);
+        formData.append('image', image);
         formData.append('category_id', productInput.category_id);
         formData.append('slug', productInput.slug);
         formData.append('name', productInput.name);
@@ -106,8 +106,13 @@ function Product()
             }
         });
 
+
+        
     }
 
+    // const onInputClick = (event) => {
+    //     event.target.value = ''
+    // }
     return (
         <div className="container-fluid px-4">
             <div className="card mt-4">
@@ -117,7 +122,7 @@ function Product()
                     </h4>
                 </div>
                 <div className="card-body">
-                    <form onSubmit={submitProduct} enctype="multipart/form-data ">
+                    <form onSubmit={submitProduct} encType="multipart/form-data ">
 
                         <ul className="nav nav-tabs" id="myTab" role="tablist">
                             <li className="nav-item" role="presentation">
@@ -206,7 +211,7 @@ function Product()
                                     </div>
                                     <div className="col-md-8 form-group mb-3">
                                         <label>Image</label>
-                                        <input type="file" name="image" onChange={handleImage}  className="form-control" />
+                                        <input type="file" name="image" onChange={handleImage}      className="form-control" />
                                         <small className="text-danger">{errorlist.image}</small>
                                     </div>
                                     <div className="col-md-4 form-group mb-3">
