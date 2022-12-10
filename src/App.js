@@ -19,6 +19,9 @@ import EditCategory from './components/admin/category/EditCategory';
 import Product from './components/admin/product/Product';
 import ViewProduct from './components/admin/product/ViewProduct';
 import EditProduct from './components/admin/product/EditProduct';
+import About from './components/frontend/About';
+import Contact from './components/frontend/Contact';
+import FrontendLayout from './FrontendLayout';
 
 
 axios.defaults.baseURL = "http://localhost:8000/"
@@ -94,12 +97,13 @@ function App() {
 
     <Routes>
        
-        <Route exact path="/" element={<Home />} /> 
+        
         {/* <Route path="/login" element={<Login/>} /> 
         <Route path="/register" element={<Register/>} />  */}
 
         <Route exact  path="/403" element={<Page403/>}/>
         <Route exact  path="/403" element={<Page404/>}/>
+        
 
       <Route  exact path="/login" element=  {localStorage.getItem('auth_token')?<Navigate to="/" />:<Login/>} />
         
@@ -128,8 +132,17 @@ function App() {
                 ( <Navigate to="/login" />) }
                 />
         
+
+
+        <Route  exact path='/' element={<FrontendLayout element={<Home/>} />}/>   
+        <Route exact  path="/about" element={<About/>}/>
+        <Route exact  path="/contact" element={<Contact/>}/>
+
+
       </Routes>
     </Router>
+
+    
     </div>
   );
 }

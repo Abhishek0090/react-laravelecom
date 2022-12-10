@@ -1,12 +1,15 @@
 import React from 'react'
 import Navbar from '../../layouts/frontend/Navbar'
 
-const Home = () => {
+const About = () => {
   return (
-    <div> 
-    Home
+    <div>
+    <Navbar/>
+    <h1>
+    About
+    </h1>
     </div>
   )
 }
 
-export default Home
+export default About
