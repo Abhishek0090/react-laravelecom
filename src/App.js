@@ -6,8 +6,7 @@ import Login from './components/frontend/auth/Login';
 import Register from './components/frontend/auth/Register';
 import Home from './components/frontend/Home';
 import MasterLayout from './layouts/admin/MasterLayout';
-import axios from 'axios';
-import AdminPrivateRoute from './routes/AdminPrivateRoute';
+import axios from 'axios'; 
 import { useEffect } from 'react';
 import { useState } from 'react';
 import swal from 'sweetalert';
@@ -22,6 +21,8 @@ import EditProduct from './components/admin/product/EditProduct';
 import About from './components/frontend/About';
 import Contact from './components/frontend/Contact';
 import FrontendLayout from './FrontendLayout';
+import ViewCategoryfrontend from './components/frontend/collections/ViewCategory';
+ 
 
 
 axios.defaults.baseURL = "http://localhost:8000/"
@@ -137,8 +138,9 @@ function App() {
         <Route  exact path='/' element={<FrontendLayout element={<Home/>} />}/>   
         <Route exact  path="/about" element={<About/>}/>
         <Route exact  path="/contact" element={<Contact/>}/>
-
-
+        <Route exact  path="/collections" element={<ViewCategoryfrontend/>}/>
+        
+        
       </Routes>
     </Router>
 
