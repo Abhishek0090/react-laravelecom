@@ -10,6 +10,7 @@ const ViewCategory = () => {
     const [categorylist, setCategorylist] = useState([]);
 
     useEffect(() => {
+        document.title="View Category";
         axios.get('/api/view-category').then((res)=>{
             if(res.status === 200){
 

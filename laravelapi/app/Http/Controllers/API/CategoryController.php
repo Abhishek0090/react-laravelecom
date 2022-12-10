@@ -64,8 +64,7 @@ class CategoryController extends Controller
 
      
         $category = Category::find($id);
-
-
+ 
         if($category){
 
             return response()->json([
@@ -110,7 +109,7 @@ class CategoryController extends Controller
         $category->name = $request->input('name');
         $category->description = $request->input('description');
         $category->status = $request->input('status')==true ?'1':'0';
-        $category->save();
+        $category->update();
         return response()->json([
             'status'=>200,
             'message'=>'Category Updated Successfully'

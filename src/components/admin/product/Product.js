@@ -14,8 +14,7 @@ function Product()
 
         meta_title: '',
         meta_keyword: '',
-        meta_description: '',
-        image: '',
+        meta_description: '', 
         selling_price: '',
         original_price: '',
         qty: '',
@@ -57,7 +56,7 @@ function Product()
     const submitProduct = (e) => {
         e.preventDefault();
         
-        const formData = new FormData();
+        var formData = new FormData();
         formData.append('image', image);
         formData.append('category_id', productInput.category_id);
         formData.append('slug', productInput.slug);
@@ -89,8 +88,7 @@ function Product()
                     meta_keyword: '',
                     meta_description: '',
                     selling_price: '',
-                    original_price: '',
-                    'image':'',
+                    original_price: '', 
                     qty: '', 
                     brand: '', 
                     featured: '',
@@ -106,8 +104,7 @@ function Product()
             }
         });
 
-
-        
+ 
     }
 
     // const onInputClick = (event) => {
@@ -211,7 +208,7 @@ function Product()
                                     </div>
                                     <div className="col-md-8 form-group mb-3">
                                         <label>Image</label>
-                                        <input type="file" name="image" onChange={handleImage}      className="form-control" />
+                                        <input type="file" name="image" onChange={handleImage}       className="form-control" />
                                         <small className="text-danger">{errorlist.image}</small>
                                     </div>
                                     <div className="col-md-4 form-group mb-3">
