@@ -12,7 +12,7 @@ use App\Http\Controllers\API\FrontendController;
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 
-Route::post('getcategory',FrontendController::class,'category');
+Route::any('getcategory',FrontendController::class,'category');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
