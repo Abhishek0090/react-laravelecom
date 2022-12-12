@@ -21,7 +21,7 @@ import EditProduct from './components/admin/product/EditProduct';
 import About from './components/frontend/About';
 import Contact from './components/frontend/Contact';
 import FrontendLayout from './FrontendLayout';
-import ViewCategoryfrontend from './components/frontend/collections/ViewCategory';
+import ViewCategoryFrontend from './components/frontend/collections/ViewCategoryFrontend';
  
 
 
@@ -138,7 +138,7 @@ function App() {
         <Route  exact path='/' element={<FrontendLayout element={<Home/>} />}/>   
         <Route exact  path="/about" element={<About/>}/>
         <Route exact  path="/contact" element={<Contact/>}/>
-        <Route exact  path="/collections" element={<ViewCategoryfrontend/>}/>
+        <Route exact  path="/collection" element={<ViewCategoryFrontend/>}/>
         
         
       </Routes>

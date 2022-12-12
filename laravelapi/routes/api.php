@@ -12,7 +12,7 @@ use App\Http\Controllers\API\FrontendController;
 Route::post('register',[AuthController::class,'register']);
 Route::post('login',[AuthController::class,'login']);
 
-Route::any('getcategory',FrontendController::class,'category');
+Route::get('getCategory',[FrontendController::class,'category']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
@@ -53,6 +53,8 @@ Route::middleware(['auth:sanctum','isAPIAdmin'])->group(function(){
 
     //Products
     Route::get('view-product',[ProductController::class,'index']);
+    
+   
 });
 
 Route::middleware(['auth:sanctum' ])->group(function(){ 

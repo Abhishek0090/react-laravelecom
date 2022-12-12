@@ -10,20 +10,24 @@ const ViewCategoryFrontend = () => {
 
     useEffect(() => {
 
+        let isMounted = true;
+        axios.get(`api/getCategory`).then(res => {
+            if(isMounted){
 
-        axios.get(`/api/getCategory`).then(res => {
-
-            if (res.data.status === 200) {
-                // console.log(res.data.category);
-                setCategory(res.data.category);
+                if (res.data.status === 200) {
+                    // console.log(res.data.category);
+                    setCategory(res.data.category);
+                }
+                setLoading(false);
             }
-            setLoading(false);
 
         });
-
+        return (()=>{
+            isMounted = false;
+        })
     }, []);
 
-
+ 
     if (loading) {
         return <h4>Loading Categories...</h4>
     }
@@ -48,7 +52,9 @@ const ViewCategoryFrontend = () => {
     }
     if (showCategoryList.length > 0) {
         return (
+            
             <div>
+            <Navbar/>
                 <div className="py-3 bg-warning">
                     <div className="container">
                         <h6>Category Page</h6>
