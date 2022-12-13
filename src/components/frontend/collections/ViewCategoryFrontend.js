@@ -37,11 +37,11 @@ const ViewCategoryFrontend = () => {
             return (
                 <div className="col-md-4" key={idx}>
                     <div className="card">
-                        <Link to={`collection/${item.slug}`}>
+                        <Link to={`${item.slug}`}>
                             <img src="" className="w-100" alt={item.name} />
                         </Link>
                         <div className="card-body">
-                            <Link to={`collection/${item.slug}`}>
+                            <Link to={`${item.slug}`}>
                                 <h5>{item.name}</h5>
                             </Link>
                         </div>
@@ -74,8 +74,7 @@ const ViewCategoryFrontend = () => {
     }
     else {
         return (
-            <div>
-                <Navbar />
+            <div> 
                 <div className="py-3 bg-warning">
                     <div className="container">
                         <h6>Category Page</h6>

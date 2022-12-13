@@ -22,6 +22,8 @@ import About from './components/frontend/About';
 import Contact from './components/frontend/Contact';
 import FrontendLayout from './FrontendLayout';
 import ViewCategoryFrontend from './components/frontend/collections/ViewCategoryFrontend';
+import ViewProductFrontend from './components/frontend/collections/ViewProductFrontend';
+import routes from './routes/routes';
  
 
 
@@ -102,8 +104,8 @@ function App() {
         {/* <Route path="/login" element={<Login/>} /> 
         <Route path="/register" element={<Register/>} />  */}
 
-        <Route exact  path="/403" element={<Page403/>}/>
-        <Route exact  path="/403" element={<Page404/>}/>
+        {/* <Route exact  path="/403" element={<Page403/>}/>
+        <Route exact  path="/403" element={<Page404/>}/>*/}
         
 
       <Route  exact path="/login" element=  {localStorage.getItem('auth_token')?<Navigate to="/" />:<Login/>} />
@@ -132,15 +134,20 @@ function App() {
                 ( <MasterLayout   /> ) :
                 ( <Navigate to="/login" />) }
                 />
-        
+       
 
 
-        <Route  exact path='/' element={<FrontendLayout element={<Home/>} />}/>   
-        <Route exact  path="/about" element={<About/>}/>
-        <Route exact  path="/contact" element={<Contact/>}/>
-        <Route exact  path="/collection" element={<ViewCategoryFrontend/>}/>
+        <Route  exact path='/' element={<FrontendLayout element={<Home/>}/>} />   
+        <Route exact  path="/about" element={<FrontendLayout element={<About/>}/>}/>
+        <Route exact  path="/contact" element={<FrontendLayout element={<Contact/>}/>}/>
+        
+        <Route exact  path="/collection" element= {<ViewCategoryFrontend/>}/>
+        <Route exact  path="/collection/:slug" element={<FrontendLayout element={<ViewProductFrontend/>}/>}/>
         
         
+        {/* {routes.map((e,idx)=>{
+        return <Route exact path={e.path} element={e.element}/>
+    })} */}
       </Routes>
     </Router>
 
