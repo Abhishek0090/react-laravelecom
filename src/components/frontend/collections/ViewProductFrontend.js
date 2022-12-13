@@ -31,7 +31,7 @@ const ViewProductFrontend = (props) => {
                 }
                 else if(res.data.status === 404)
                 {
-                    Navigate('/collections');
+                    Navigate('/collection');
                     swal("Warning",res.data.message,"error");
                 }
             }
@@ -56,11 +56,11 @@ const ViewProductFrontend = (props) => {
                 return (
                     <div className="col-md-3" key={idx}>
                         <div className="card">
-                            <Link to={`/collections/${item.category.slug}/${item.slug}`}>
+                            <Link to={`/collection/${item.category.slug}/${item.slug}`}>
                                 <img src={`http://localhost:8000/${item.image}`} className="w-100" alt={item.name} />
                             </Link>
                             <div className="card-body">
-                                <Link to={`/collections/${item.category.slug}/${item.slug}`}>
+                                <Link to={`/collection/${item.category.slug}/${item.slug}`}>
                                     <h5>{ item.name }</h5>
                                 </Link>
                             </div>
