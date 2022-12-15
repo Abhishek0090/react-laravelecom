@@ -24,6 +24,7 @@ import FrontendLayout from './FrontendLayout';
 import ViewCategoryFrontend from './components/frontend/collections/ViewCategoryFrontend';
 import ViewProductFrontend from './components/frontend/collections/ViewProductFrontend';
 import routes from './routes/routes';
+import ProductDetailsFrontend from './components/frontend/collections/ProductDetailsFrontend';
  
 
 
@@ -141,8 +142,9 @@ function App() {
         <Route exact  path="/about" element={<FrontendLayout element={<About/>}/>}/>
         <Route exact  path="/contact" element={<FrontendLayout element={<Contact/>}/>}/>
         
-        <Route exact  path="/collection" element= {<ViewCategoryFrontend/>}/>
+        <Route exact  path="/collection" element= {<FrontendLayout element={<ViewCategoryFrontend/>}/>}/>
         <Route exact  path="/collection/:slug" element={<FrontendLayout element={<ViewProductFrontend/>}/>}/>
+        <Route exact  path="/collection/:slug/:product" element={<FrontendLayout element={<ProductDetailsFrontend/>}/>}/>
         
         
         {/* {routes.map((e,idx)=>{

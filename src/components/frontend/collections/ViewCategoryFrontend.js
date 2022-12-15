@@ -53,8 +53,7 @@ const ViewCategoryFrontend = () => {
     if (showCategoryList.length > 0) {
         return (
             
-            <div>
-            <Navbar/>
+            <div>     
                 <div className="py-3 bg-warning">
                     <div className="container">
                         <h6>Category Page</h6>

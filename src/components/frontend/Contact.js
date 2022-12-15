@@ -3,8 +3,7 @@ import Navbar from '../../layouts/frontend/Navbar'
 
 const Contact = () => {
   return (
-    <div>
-    <Navbar/>
+    <div> 
     <h1>
     Contact
     </h1>

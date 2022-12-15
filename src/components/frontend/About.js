@@ -3,8 +3,7 @@ import Navbar from '../../layouts/frontend/Navbar'
 
 const About = () => {
   return (
-    <div>
-    <Navbar/>
+    <div> 
     <h1>
     About
     </h1>
