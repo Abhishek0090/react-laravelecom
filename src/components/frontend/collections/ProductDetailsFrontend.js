@@ -49,6 +49,12 @@ const ProductDetailsFrontend = () => {
 
     }, [Navigate,useParams])
 
+    if(loading){
+        return <h4>Loading Product Details</h4>
+    }else{
+
+    }
+
   return (
     <div>
         <div className='py-3 bg-warning'>
@@ -60,7 +66,32 @@ const ProductDetailsFrontend = () => {
 
         <div className='py-3  '>
                 <div className='container'>
-                    <h6>  product data</h6>
+                     <div className="row">
+
+                        <div className="col-md-4 border-end">
+                            {/* <img src={`http://localhost:8000/${product.image}`} alt={product.name} className="w-100" /> */}
+                        </div>
+
+                        <div className="col-md-8">
+                            <h4>
+                                {/* {product.name} */}
+                                <span className="float-end badge btn-sm btn-danger badge-pil"> {product.brand} </span>
+                            </h4>
+                            {/* <p> {product.description} </p> */}
+                            <h4 className="mb-1"> 
+                                {/* Rs: {product.selling_price} */}
+                                {/* <s className="ms-2">  Rs: {product.original_price} </s> */}
+                            </h4>
+                            <div>
+                                {/* {avail_stock} */}
+                            </div>
+
+                            <button type="button" className="btn btn-danger mt-3">Add to Wishlist</button>
+                           
+                       </div>
+
+                    </div>
+        
                 </div>
         </div>
  
