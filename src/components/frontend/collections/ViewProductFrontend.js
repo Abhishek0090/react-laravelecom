@@ -1,15 +1,19 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
 
-const ViewProductFrontend = (props) => {
-    
+const ViewProductFrontend = () => {
+
+    const navigate = useNavigate();
+
     const [loading, setLoading] = useState(true);
     const [product, setProduct] = useState([]);
     const [category, setCategory] = useState([]);
 
+    
     const productCount = product.length;
+
     
     let {slug} = useParams();
     
@@ -17,12 +21,15 @@ const ViewProductFrontend = (props) => {
         
         let isMounted = true;
 
-        const product_slug = slug;
-        axios.get(`/api/fetchproducts/${product_slug}`).then((res)=>{
+ 
+        axios.get(`/api/fetchproducts/${slug}`).then((res)=>{
             if(isMounted){
                 if(res.data.status===200){
                     setProduct(res.data.product_data.product);
                     setCategory(res.data.product_data.category);
+                    console.log(res.data.product_data.category)
+                    
+
                     setLoading(false);
                 }else if(res.data.status === 400)
                 {
@@ -31,18 +38,18 @@ const ViewProductFrontend = (props) => {
                 }
                 else if(res.data.status === 404)
                 {
-                    Navigate('/collection');
-                    swal("Warning",res.data.message,"error");
+                    navigate('/collection');
+                    swal("Warning",res.data.message,"error")    ;
                 }
             }
         })
 
         return ()=>{
             isMounted =false;
-        }
+        };
  
 
-    }, [Navigate,useParams])
+    }, [navigate,useParams])
     
     if(loading)
     {
@@ -50,11 +57,12 @@ const ViewProductFrontend = (props) => {
     }else {
         var showProductList = '';
         if(productCount)
-        {
-
+        { 
             showProductList = product.map( (item, idx) => {
                 return (
+                    
                     <div className="col-md-3" key={idx}>
+ 
                         <div className="card">
                             <Link to={`/collection/${item.category.slug}/${item.slug}`}>
                                 <img src={`http://localhost:8000/${item.image}`} className="w-100" alt={item.name} />

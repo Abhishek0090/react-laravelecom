@@ -144,7 +144,7 @@ function App() {
         
         <Route exact  path="/collection" element= {<FrontendLayout element={<ViewCategoryFrontend/>}/>}/>
         <Route exact  path="/collection/:slug" element={<FrontendLayout element={<ViewProductFrontend/>}/>}/>
-        <Route exact  path="/collection/:slug/:product" element={<FrontendLayout element={<ProductDetailsFrontend/>}/>}/>
+        <Route exact  path="/collection/:category/:product" element={<FrontendLayout element={<ProductDetailsFrontend/>}/>}/>
         
         
         {/* {routes.map((e,idx)=>{

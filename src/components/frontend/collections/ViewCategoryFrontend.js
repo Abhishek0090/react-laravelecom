@@ -11,11 +11,11 @@ const ViewCategoryFrontend = () => {
     useEffect(() => {
 
         let isMounted = true;
-        axios.get(`api/getCategory`).then(res => {
+        axios.get(`/api/getCategory`).then(res => {
             if(isMounted){
 
                 if (res.data.status === 200) {
-                    // console.log(res.data.category);
+                    console.log(res.data.category);
                     setCategory(res.data.category);
                 }
                 setLoading(false);
