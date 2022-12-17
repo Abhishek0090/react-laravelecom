@@ -9,9 +9,7 @@ import MasterLayout from './layouts/admin/MasterLayout';
 import axios from 'axios'; 
 import { useEffect } from 'react';
 import { useState } from 'react';
-import swal from 'sweetalert';
-import Page403 from './components/errors/Page403';
-import Page404 from './components/errors/Page404';
+import swal from 'sweetalert'; 
 import Category from './components/admin/category/Category';
 import ViewCategory from './components/admin/category/ViewCategory';
 import EditCategory from './components/admin/category/EditCategory';
@@ -22,8 +20,7 @@ import About from './components/frontend/About';
 import Contact from './components/frontend/Contact';
 import FrontendLayout from './FrontendLayout';
 import ViewCategoryFrontend from './components/frontend/collections/ViewCategoryFrontend';
-import ViewProductFrontend from './components/frontend/collections/ViewProductFrontend';
-import routes from './routes/routes';
+import ViewProductFrontend from './components/frontend/collections/ViewProductFrontend'; 
 import ProductDetailsFrontend from './components/frontend/collections/ProductDetailsFrontend';
  
 

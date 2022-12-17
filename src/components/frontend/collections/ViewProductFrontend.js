@@ -12,9 +12,10 @@ const ViewProductFrontend = () => {
     const [category, setCategory] = useState([]);
 
     
-    const productCount = product.length;
-
     
+    let productCount = product.length;
+
+    console.log(productCount)
     let {slug} = useParams();
     
     useEffect(() => {
@@ -27,8 +28,7 @@ const ViewProductFrontend = () => {
                 if(res.data.status===200){
                     setProduct(res.data.product_data.product);
                     setCategory(res.data.product_data.category);
-                    console.log(res.data.product_data.category)
-                    
+          
 
                     setLoading(false);
                 }else if(res.data.status === 400)
@@ -75,7 +75,8 @@ const ViewProductFrontend = () => {
                         </div>
                     </div>
                 )
-            });
+            }
+            );
         }else
         {
             showProductList = 
