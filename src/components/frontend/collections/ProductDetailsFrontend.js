@@ -80,6 +80,7 @@ const ProductDetailsFrontend = () => {
             if(res.data.status === 201){
                 //Created - Data Inserted
                 swal("Success",res.data.message,"success");
+                
             }else if(res.data.status === 409){
                 //Already added to cart
                 swal("Success",res.data.message,"success");

@@ -89,6 +89,12 @@ const Navbar = () => {
                   Collection
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/cart">
+                  Cart
+                </Link>
+              </li>
+              &nbsp;
               {AuthButtons}  
             </ul> 
           </div>

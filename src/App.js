@@ -22,6 +22,9 @@ import FrontendLayout from './FrontendLayout';
 import ViewCategoryFrontend from './components/frontend/collections/ViewCategoryFrontend';
 import ViewProductFrontend from './components/frontend/collections/ViewProductFrontend'; 
 import ProductDetailsFrontend from './components/frontend/collections/ProductDetailsFrontend';
+import Cart from './layouts/frontend/Cart';
+import Checkout from './layouts/frontend/Checkout';
+import Order from './layouts/admin/order/Order';
  
 
 
@@ -127,6 +130,10 @@ function App() {
      <Route  exact path='/admin/view-product' element={<MasterLayout element={<ViewProduct/>} />}/>
 
      <Route  exact path='/admin/edit-product/:id' element={<MasterLayout element={<EditProduct/>} />}/>  
+
+     <Route  exact path='/admin/orders' element={<MasterLayout element={<Order/>} />}/>  
+
+ 
  
       <Route  exact path="/admin" element={  Authenticated ?
                 ( <MasterLayout   /> ) :
@@ -142,6 +149,8 @@ function App() {
         <Route exact  path="/collection" element= {<FrontendLayout element={<ViewCategoryFrontend/>}/>}/>
         <Route exact  path="/collection/:slug" element={<FrontendLayout element={<ViewProductFrontend/>}/>}/>
         <Route exact  path="/collection/:category/:product" element={<FrontendLayout element={<ProductDetailsFrontend/>}/>}/>
+        <Route exact  path="/cart" element={<FrontendLayout element={<Cart/>}/>}/>
+        <Route exact  path="/checkout" element={<FrontendLayout element={<Checkout/>}/>}/>
         
         
         {/* {routes.map((e,idx)=>{

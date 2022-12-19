@@ -32,6 +32,7 @@ class CartController extends Controller
                         $cartitem->product_id  = $product_id;
                         $cartitem->product_qty  = $product_qty;
 
+                        $cartitem->save();
                         return response()->json([
                         'status'=>201,
                         'message'=>'Added to  Cart '
@@ -52,5 +53,76 @@ class CartController extends Controller
             ]);
         }
     }
+
+    public function viewcart(){
+        if(auth('sanctum')->check()){
+            $user_id = auth('sanctum')->user()->id;
+            $cartitems = Cart::where('user_id',$user_id)->get();
+            return response()->json([
+                'status'=>200,
+                'cart'=>$cartitems
+            ]);
+        }else{
+            return response()->json([
+                'status'=>401,
+                'message'=>'Login to View Cart Data'
+            ]);
+        }
+    }
+
+
+    public function updatequantity($cart_id,$scope){
+
+        if(auth('sanctum')->check()){
+            $user_id = auth('sanctum')->user()->id;
+            $cartitem = Cart::where('id',$cart_id)->where('user_id',$user_id)->first();
+
+            if($scope=="inc"){
+
+                $cartitem->product_qty += 1;  
+            }else if($scope == "desc"){
+                 
+                $cartitem->product_qty -= 1;  
+
+            }
+            $cartitem->update();
+            return response()->json([
+                'status'=>200,
+                'message'=>"Quantity updated"
+            ]);
+        }else{
+            return response()->json([
+                'status'=>401,
+                'message'=>'Login to View Cart Data'
+            ]);
+        }
+
+    }
+
+    public function deletecartitem($cart_id){
+        if(auth('sanctum')->check()){
+            $user_id = auth('sanctum')->user()->id;
+            $cartitems = Cart::where('user_id',$user_id)->first();
+
+            if($cartitems){
+                $cartitems->delete();   
+                   return response()->json([
+                    'status'=>201,
+                    'message'=>'Product Delete Successfully'
+                ]); 
+            }else{
+                return  response()->json([
+                    'status'=>404,
+                    'message'=>'Cart Item not found'
+                ]);
+            }
+        }else{
+            return response()->json([
+                'status'=>401,
+                'message'=>'Login to Continue'
+            ]);
+        }
+    }
+
  
 }
