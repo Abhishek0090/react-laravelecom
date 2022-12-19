@@ -30,11 +30,13 @@ class FrontendController extends Controller
 
 
      public function product($slug){
+
+   
       $category = Category::where('slug',$slug)->where('status','0')->first();
 
       if($category){
 
-        $product = Product::where('category_id',$category->id)->where('status','0')->first();
+        $product = Product::where('category_id',$category->id)->where('status','0')->get();
 
 
 
@@ -63,11 +65,14 @@ class FrontendController extends Controller
           'message'=>'No Category Found'
           
         ]);
+ 
      }
 }
 
 
       public function viewproduct($category_slug,$product_slug){
+
+       
         $category = Category::where('slug',$category_slug)->where('status','0')->first();
 
         if($category){
@@ -96,6 +101,10 @@ class FrontendController extends Controller
             
           ]);
        }
+
+
+       
+       
       }
 
 }

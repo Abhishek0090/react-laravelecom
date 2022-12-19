@@ -33,6 +33,7 @@ const ProductDetailsFrontend = () => {
             if(isMounted){
                 if(res.data.status===200){
                     setProducts(res.data.product); 
+                    console.log(res.data.product.qty)
                     setLoading(false);
                 }else if(res.data.status === 400)
                 {
@@ -54,26 +55,66 @@ const ProductDetailsFrontend = () => {
 
     }, [navigate,useParams])
 
+     // Quantity Increment/Decrement in Hooks - Start
+     const handleDecrement = () => {
+        if(quantity > 1){
+            setQuantity(prevCount => prevCount - 1);
+        }
+    }
+    const handleIncrement = () => {
+        if(quantity < 10){
+            setQuantity(prevCount => prevCount + 1);
+        }
+    }
+    // Quantity Increment/Decrement in Hooks - End
+
+    const submitAddtocart = (e) => {
+        e.preventDefault();
+        
+        const data = {
+            product_id: products.id,
+            product_qty: quantity,
+        }
+
+        axios.post(`/api/add-to-cart`, data).then(res=>{
+            if(res.data.status === 201){
+                //Created - Data Inserted
+                swal("Success",res.data.message,"success");
+            }else if(res.data.status === 409){
+                //Already added to cart
+                swal("Success",res.data.message,"success");
+            }else if(res.data.status === 401){
+                //Unauthenticated
+                swal("Error",res.data.message,"error");
+            }else if(res.data.status === 404){
+                //Not Found
+                swal("Warning",res.data.message,"warning");
+            }
+        });
+
+    }
+
+
     if(loading){
         return <h4>Loading Product Details</h4>
     }else  
     {
 
         var avail_stock = '';
-        if(product.qty > 0)
+        if(products.qty > 0)
         {
             avail_stock = <div>
                 <label className="btn-sm btn-success px-4 mt-2">In stock</label>
                 <div className="row">
                     <div className="col-md-3 mt-3">
                         <div className="input-group">
-                            <button type="button"  className="input-group-text">-</button>
+                            <button type="button" onClick={handleDecrement} className="input-group-text">-</button>
                             <div className="form-control text-center">{quantity}</div>
-                            <button type="button"   className="input-group-text">+</button>
+                            <button type="button" onClick={handleIncrement}  className="input-group-text">+</button>
                         </div>
                     </div>
                     <div className="col-md-3 mt-3">
-                        <button type="button" className="btn btn-primary w-100"  >Add to Cart</button>
+                        <button type="button" className="btn btn-primary w-100" onClick={submitAddtocart}  >Add to Cart</button>
                     </div>
                 </div>
             </div>

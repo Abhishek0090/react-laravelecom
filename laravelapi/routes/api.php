@@ -6,6 +6,7 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\FrontendController;
+use App\Http\Controllers\API\CartController;
 
  
 
@@ -15,6 +16,7 @@ Route::post('login',[AuthController::class,'login']);
 Route::get('getCategory',[FrontendController::class,'category']);
 Route::get('fetchproducts/{slug}',[FrontendController::class,'product']);
 Route::get('view-product/{category_slug}/{product_slug}',[FrontendController::class,'viewproduct']);
+Route::post('add-to-cart',[CartController::class,'addtocart']);
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
